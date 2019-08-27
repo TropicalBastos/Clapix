@@ -23,4 +23,4 @@ Clap or click your fingers (twice) to turn on and off all LIFX bulbs on your net
 1. Connect the NodeMCU to your computer
 2. Configure Arduino IDE to upload to the NodeMCU (many tutorials online)
 3. Compile and upload
-4. Clap!
+4. Clap! (twice)
