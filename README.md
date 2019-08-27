@@ -1,6 +1,6 @@
 # Clapix
 
-Clap or click your fingers to turn on and off all LIFX bulbs on your network.
+Clap or click your fingers (twice) to turn on and off all LIFX bulbs on your network.
 
 ## Prerequisites
 
