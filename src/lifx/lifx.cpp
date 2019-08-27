@@ -1,5 +1,10 @@
 #include "lifx.h"
 
+#ifdef ESP8266
+#include <ESP8266WiFi.h>
+#include <WiFiUdp.h>
+#endif
+
 LifxProtocol::~LifxProtocol()
 {
     free(mPacket);
@@ -82,8 +87,9 @@ int LifxProtocol::BuildPacket(void* _payload, int payloadSize)
 
 void LifxProtocol::BroadcastMessage(void* payload, int payloadSize)
 {
-#if !defined(ESP8266) && !defined(__AVR__)
     int size = BuildPacket(payload, payloadSize);
+
+#if !defined(ESP8266) && !defined(__AVR__)
 
     struct sockaddr_in broadcast_addr;
     struct sockaddr_in listen_addr;
@@ -135,5 +141,14 @@ void LifxProtocol::BroadcastMessage(void* payload, int payloadSize)
     printf("RESPONSE FROM: %d\n", recv_addr.sin_addr.s_addr);
 
     close(fd);
+#endif
+#ifdef ESP8266
+
+    WiFiUDP Udp;
+    Udp.begin(BROADCAST_PORT);
+    Udp.beginPacket(BROADCAST_IP, BROADCAST_PORT);
+    Udp.write(mPacket, size);
+    Udp.endPacket();
+
 #endif
 }

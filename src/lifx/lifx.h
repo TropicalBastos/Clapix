@@ -21,8 +21,9 @@
 #define SOURCE_ID 123
 
 #define GET_SERVICE 2
-#define TOGGLE_POWER 0
 #define SET_POWER 21
+#define POWER_OFF 0
+#define POWER_ON 65535
 
 #define BROADCAST_IP "255.255.255.255"
 #define BROADCAST_PORT 56700
